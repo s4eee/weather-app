@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Weather — Glass</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="orb o1"></div>
+  <div class="orb o2"></div>
+
+  <div class="app">
+    <h1 class="logo">weather<span>.</span></h1>
+
+    <div class="search-row">
+      <div class="search-box">
+        <input type="text" id="searchInput" placeholder="Search a city…" autocomplete="off">
+        <div class="suggestions" id="suggestions"></div>
+      </div>
+      <button class="locate-btn" id="locateBtn" title="Use current location">⌖</button>
+    </div>
+
+    <div class="status" id="status">Search a city or tap ⌖ to use your location</div>
+
+    <div class="skeleton" id="skeleton">
+      <div class="glass sk-hero"><div class="sk-block sk-line" style="width:40%"></div><div class="sk-block sk-line" style="width:60%;height:48px;margin-top:20px"></div></div>
+      <div class="sk-grid">
+        <div class="glass sk-block sk-tile"></div>
+        <div class="glass sk-block sk-tile"></div>
+        <div class="glass sk-block sk-tile"></div>
+        <div class="glass sk-block sk-tile"></div>
+      </div>
+      <div class="glass sk-block sk-strip"></div>
+      <div class="glass sk-block sk-days"></div>
+    </div>
+
+    <div class="readout" id="readout">
+      <div class="glass hero">
+        <div class="hero-name" id="heroName">—</div>
+        <div class="hero-date" id="heroDate">—</div>
+        <div class="hero-icon-wrap" id="heroIcon"></div>
+        <div class="hero-temp-row">
+          <div class="hero-temp" id="heroTemp">—</div>
+          <div class="hero-unit" id="unitToggle">°C</div>
+        </div>
+        <div class="hero-cond" id="heroCond">—</div>
+        <div class="hero-feels" id="heroFeels">Feels like —</div>
+        <div class="hero-message" id="heroMessage">—</div>
+      </div>
+
+      <div class="stats">
+        <div class="glass stat"><div class="stat-label">Humidity</div><div class="stat-value" id="statHumidity">— <small>%</small></div></div>
+        <div class="glass stat"><div class="stat-label">Wind</div><div class="stat-value" id="statWind">— <small>km/h</small></div></div>
+        <div class="glass stat"><div class="stat-label">Feels like</div><div class="stat-value" id="statFeels">— <small>°</small></div></div>
+        <div class="glass stat"><div class="stat-label">Pressure</div><div class="stat-value" id="statPressure">— <small>hPa</small></div></div>
+      </div>
+
+      <div class="section-title">Next 24 hours</div>
+      <div class="glass hourly-strip">
+        <div class="hourly-track">
+          <svg id="hourlySvg" style="display:block;"></svg>
+          <div class="hourly-labels" id="hourlyLabels"></div>
+        </div>
+      </div>
+
+      <div class="section-title">5-day outlook</div>
+      <div class="glass days" id="days"></div>
+    </div>
+
+    <footer>Data: open-meteo.com · No API key required</footer>
+  </div>
+
+  <!-- Load order matters: config → api → render → app (app.js reads from the others) -->
+  <script src="config.js"></script>
+  <script src="api.js"></script>
+  <script src="render.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
